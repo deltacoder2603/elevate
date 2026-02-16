@@ -1,0 +1,199 @@
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ELEVATE 2026 - Dark theme with vibrant yellow */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    /* Vibrant Yellow Primary */
+    --primary: 45 100% 51%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 45 100% 45%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 51%;
+
+    --radius: 0.75rem;
+
+    /* Custom ELEVATE colors */
+    --yellow-glow: 45 100% 51%;
+    --yellow-soft: 45 100% 60%;
+    --yellow-dark: 45 100% 35%;
+    --surface-elevated: 0 0% 12%;
+    --surface-overlay: 0 0% 6%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 51%), hsl(35 100% 50%));
+    --gradient-glow: radial-gradient(ellipse at center, hsl(45 100% 51% / 0.15), transparent 70%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 10%), hsl(0 0% 6%));
+
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(45 100% 51% / 0.3);
+    --shadow-glow-sm: 0 0 20px hsl(45 100% 51% / 0.2);
+    --shadow-elevated: 0 20px 40px -10px hsl(0 0% 0% / 0.5);
+
+    /* Font family */
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: system-ui, -apple-system, sans-serif;
+
+    /* Sidebar - keeping dark theme consistent */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 45 100% 51%;
+    --sidebar-primary-foreground: 0 0% 4%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 18%;
+    --sidebar-ring: 45 100% 51%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-effect-sm {
+    box-shadow: var(--shadow-glow-sm);
+  }
+
+  .card-elevated {
+    background: var(--gradient-card);
+    @apply border border-border/50;
+  }
+
+  .yellow-hover {
+    @apply transition-all duration-300;
+  }
+
+  .yellow-hover:hover {
+    box-shadow: var(--shadow-glow-sm);
+    @apply border-primary/50;
+  }
+
+  /* Animated background gradient */
+  .animated-gradient {
+    background: linear-gradient(
+      -45deg,
+      hsl(0 0% 4%),
+      hsl(0 0% 8%),
+      hsl(45 100% 10%),
+      hsl(0 0% 4%)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Marquee animation */
+  .marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Pulse glow for CTAs */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsl(45 100% 51% / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(45 100% 51% / 0.6); }
+  }
+
+  /* Floating animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Stats counter animation */
+  .counter-flip {
+    animation: counter-flip 0.5s ease-out;
+  }
+
+  @keyframes counter-flip {
+    0% { transform: translateY(-100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
